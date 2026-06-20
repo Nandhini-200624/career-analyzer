@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<!-- BACKGROUND BLOBS (should NOT wrap content) -->
+<div class="bg-blobs"></div>
+
+<!-- MAIN WRAPPER -->
+<div class="main-wrapper">
+
+    <!-- HERO -->
+    <div class="hero-section">
+        <h1>Career Analyzer</h1>
+        <p>AI-Powered Career Guidance Platform</p>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+
+            <span class="navbar-brand">Career Analyzer</span>
+
+            <div class="ms-auto d-flex gap-2">
+
+                <button class="btn btn-outline-light" onclick="toggleTheme()">
+                    🌙 Theme
+                </button>
+
+                <button class="btn btn-outline-light" onclick="logout()">
+                    Logout
+                </button>
+
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- WELCOME CARD -->
+    <div class="container mt-3">
+        <div class="card shadow p-3 mb-4">
+
+            <h4>Welcome Back</h4>
+            <p id="welcomeUser"></p>
+
+        </div>
+
+        <!-- DASHBOARD -->
+        <h2 class="mb-4">Career Dashboard</h2>
+
+        <div class="row mb-4">
+
+            <div class="col-md-4">
+                <div class="card stat-card">
+                    <div class="stat-number" id="skillCount">0</div>
+                    <h5>Skills</h5>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card stat-card">
+                    <div class="stat-number" id="jobCount">0</div>
+                    <h5>Career Matches</h5>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card stat-card">
+                    <div class="stat-number" id="roadmapCount">0</div>
+                    <h5>Roadmap Steps</h5>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- DETAILS -->
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="card p-3">
+                    <h4><i class="bi bi-tools"></i> Skills</h4>
+                    <p id="skills"></p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card p-3">
+                    <h4><i class="bi bi-lightbulb"></i> Career Goal</h4>
+                    <p id="goal"></p>
+                </div>
+            </div>
+
+            <div class="col-md-6 mt-3">
+                <div class="card p-3">
+                    <h4><i class="bi bi-globe"></i> Domain</h4>
+                    <p id="domain"></p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BEST MATCH -->
+        <div class="card best-match p-4 mt-4">
+
+            <h4>🎯 Best Career Match</h4>
+            <h2 id="bestJob"></h2>
+            <h5 id="bestScore"></h5>
+
+        </div>
+
+        <!-- JOBS + ROADMAP -->
+        <div class="row mt-4">
+
+            <div class="col-md-6">
+                <div class="card shadow p-3">
+                    <h5>
+                        <i class="bi bi-briefcase"></i>
+                        Recommended Jobs
+                    </h5>
+                    <ul id="jobs"></ul>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card shadow p-3">
+                    <h5>
+                        <i class="bi bi-mortarboard"></i>
+                        Learning Roadmap
+                    </h5>
+                    <ul id="roadmap"></ul>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FOOTER INSIDE BODY -->
+        <footer class="text-center mt-5">
+            Career Analyzer © 2026
+        </footer>
+
+    </div>
+
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
