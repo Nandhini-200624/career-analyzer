@@ -12,5 +12,9 @@ public class ResumeResponse {
     private String extractedText;
     private List<Map<String, Object>> recommendations;
     private List<String> roadmapSteps;
+    private String domain;
+    private Map<String,List<String>>
+            categorizedSkills;
+    private List<String> missingSkills;
     // getters and setters
 }

@@ -8,10 +8,19 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+
 public class SkillGapService {
 
     private final Map<String, List<String>> careerSkills = Map.of(
-
+            "Frontend Developer",
+            List.of(
+                    "HTML",
+                    "CSS",
+                    "JavaScript",
+                    "React",
+                    "Git",
+                    "Bootstrap"
+            ),
             "Machine Learning Engineer",
             List.of("Python",
                     "Machine Learning",

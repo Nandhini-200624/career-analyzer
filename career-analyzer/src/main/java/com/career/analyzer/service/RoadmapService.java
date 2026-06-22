@@ -1,44 +1,83 @@
 package com.career.analyzer.service;
 
-
 import com.career.analyzer.dto.CareerRoadmapResponse;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class RoadmapService {
 
     public CareerRoadmapResponse generateRoadmap(
-            List<String> skills) {
+            String role,
+            List<String> missingSkills) {
 
         CareerRoadmapResponse response =
                 new CareerRoadmapResponse();
 
-        response.setCurrentSkills(skills);
+        response.setTargetRole(role);
 
-        if(skills.contains("Java")) {
+        response.setMissingSkills(
+                missingSkills
+        );
 
-            response.setTargetRole(
-                    "Backend Developer");
+        List<String> roadmapSteps =
+                new ArrayList<>();
 
-            response.setMissingSkills(
-                    List.of(
-                            "Spring Boot",
-                            "REST API",
-                            "Docker"
-                    ));
+        // Learn missing skills first
+        for(String skill : missingSkills) {
 
-            response.setRoadmapSteps(
-                    List.of(
-                            "Learn Spring Boot",
-                            "Build REST APIs",
-                            "Learn MySQL Integration",
-                            "Learn Docker",
-                            "Deploy Application"
-                    ));
+            roadmapSteps.add(
+                    "Learn " + skill
+            );
         }
+
+        // Role-specific roadmap
+        if(role.equalsIgnoreCase(
+                "Frontend Developer")) {
+
+            roadmapSteps.add(
+                    "Build React Projects");
+
+            roadmapSteps.add(
+                    "Create Frontend Portfolio");
+
+            roadmapSteps.add(
+                    "Deploy Frontend Applications");
+        }
+
+        else if(role.equalsIgnoreCase(
+                "Backend Developer")) {
+
+            roadmapSteps.add(
+                    "Build REST APIs");
+
+            roadmapSteps.add(
+                    "Work with Databases");
+
+            roadmapSteps.add(
+                    "Deploy Backend Services");
+        }
+
+        else if(role.equalsIgnoreCase(
+                "Data Scientist")) {
+
+            roadmapSteps.add(
+                    "Build Machine Learning Models");
+
+            roadmapSteps.add(
+                    "Create Data Science Projects");
+
+            roadmapSteps.add(
+                    "Deploy ML Solutions");
+        }
+
+        response.setRoadmapSteps(
+                roadmapSteps
+        );
 
         return response;
     }
+
 }

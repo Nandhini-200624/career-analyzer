@@ -1,30 +1,49 @@
 package com.career.analyzer.util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.career.analyzer.service.SkillDatabaseService;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
 public class SkillExtractor {
 
-    private static final List<String> SKILLS = Arrays.asList(
-            "Java", "Spring", "Spring Boot", "Hibernate",
-            "Python", "Machine Learning", "SQL",
-            "JavaScript", "React", "HTML", "CSS",
-            "Docker", "AWS"
-    );
+    private final SkillDatabaseService skillDatabaseService;
 
-    public static List<String> extractSkills(String text) {
+    public SkillExtractor(
+            SkillDatabaseService skillDatabaseService) {
 
-        List<String> foundSkills = new ArrayList<>();
+        this.skillDatabaseService =
+                skillDatabaseService;
+    }
 
-        if (text == null) return foundSkills;
+    public List<String> extractSkills(
+            String text) {
 
-        for (String skill : SKILLS) {
-            if (text.toLowerCase().contains(skill.toLowerCase())) {
+        List<String> foundSkills =
+                new ArrayList<>();
+
+        if (text == null)
+            return foundSkills;
+
+        String resumeText =
+                text.toLowerCase();
+
+        for (String skill :
+                skillDatabaseService.getSkills()) {
+
+            if (resumeText.contains(
+                    skill.toLowerCase().trim())) {
+
                 foundSkills.add(skill);
             }
         }
 
-        return foundSkills;
+        return foundSkills
+                .stream()
+                .distinct()
+                .collect(Collectors.toList());
     }
 }

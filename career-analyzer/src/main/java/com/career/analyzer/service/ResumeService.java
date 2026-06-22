@@ -2,6 +2,7 @@ package com.career.analyzer.service;
 
 import com.career.analyzer.dto.CareerRoadmapResponse;
 import com.career.analyzer.dto.ResumeResponse;
+import com.career.analyzer.dto.SkillGapResponse;
 import com.career.analyzer.entity.Resume;
 import com.career.analyzer.entity.User;
 import com.career.analyzer.repository.ResumeRepository;
@@ -34,6 +35,17 @@ public class ResumeService {
     @Autowired
     private RoadmapService roadmapService;
 
+    @Autowired
+    private SkillExtractor skillExtractor;
+    @Autowired
+    private DomainDetectionService
+            domainDetectionService;
+    @Autowired
+    private SkillCategorizationService
+            skillCategorizationService;
+    @Autowired
+    private SkillGapService skillGapService;
+
     public ResumeResponse uploadResume(
             Long userId,
             MultipartFile file) throws Exception {
@@ -49,8 +61,16 @@ public class ResumeService {
 
         // Step 2: Extract skills
         List<String> skills =
-                SkillExtractor.extractSkills(
+                skillExtractor.extractSkills(
                         extractedText);
+        Map<String,List<String>>
+                categorizedSkills =
+                skillCategorizationService
+                        .categorizeSkills(skills);
+        String domain =
+                domainDetectionService
+                        .detectDomain(skills);
+
 
         // Step 3: Update Career Profile
         careerProfileService.updateProfile(
@@ -95,11 +115,24 @@ public class ResumeService {
                 recommendations =
                 weightedSkillService
                         .getTopJobs(skills);
+        String bestRole =
+                recommendations.get(0)
+                        .get("role")
+                        .toString();
+
+        SkillGapResponse gapResponse =
+                skillGapService.analyzeSkills(
+                        String.join(",", skills),
+                        bestRole
+                );
 
         // Step 7: Roadmap Generation
+
         CareerRoadmapResponse roadmap =
-                roadmapService
-                        .generateRoadmap(skills);
+                roadmapService.generateRoadmap(
+                        bestRole,
+                        gapResponse.getMissingSkills()
+                );
 
         // Step 8: Build Response
         ResumeResponse response =
@@ -118,12 +151,24 @@ public class ResumeService {
                 extractedText +
                         "\nSkills: " + skills);
 
+
         response.setRecommendations(
                 recommendations);
 
         response.setRoadmapSteps(
                 roadmap.getRoadmapSteps());
+        response.setDomain(domain);
+        response.setCategorizedSkills(
+                categorizedSkills
+        );
 
+        response.setMissingSkills(
+                gapResponse.getMissingSkills()
+        );
+        System.out.println(
+                "Missing Skills = " +
+                        gapResponse.getMissingSkills()
+        );
         return response;
     }
 }
