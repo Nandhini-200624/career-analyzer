@@ -12,7 +12,7 @@ public class CorsConfig
             CorsRegistry registry) {
 
         registry.addMapping("/**")
-                .allowedOrigins("https://career-analyzer5.netlify.app")
+                .allowedOrigins("https://career-analyser-5.netlify.app/")
                 .allowedMethods("*")
                 .allowedHeaders("*");
     }
