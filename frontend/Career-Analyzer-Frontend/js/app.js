@@ -105,14 +105,32 @@ window.onload = function () {
 
                 /* Skills */
                 const skills = data.currentSkills || "";
+                
                 document.getElementById("skills").innerText = skills;
 
                 document.getElementById("skillCount").innerText =
                     skills ? skills.split(",").length : 0;
+                    const skillDiv =
+    document.getElementById("skillCategories");
+
+if(skillDiv){
+
+    skillDiv.innerHTML =
+        skills
+            .split(",")
+            .filter(skill => skill.trim() !== "")
+            .map(skill => `
+                <span class="badge bg-primary m-1 p-2">
+                    ${skill.trim()}
+                </span>
+            `)
+            .join("");
+}
 
                 /* Domain & Goal */
                 document.getElementById("domain").innerText =
                     data.interestedDomain || "-";
+                    
 
                 document.getElementById("goal").innerText =
                     data.careerGoal || "-";
@@ -127,12 +145,115 @@ window.onload = function () {
 
             /* BEST JOB */
             const best = data.recommendations[0];
+            const jobLabels =
+    data.recommendations.map(
+        j => j.role
+    );
+
+const jobScores =
+    data.recommendations.map(
+        j => j.score
+    );
+
+new Chart(
+    document.getElementById(
+        "jobChart"
+    ),
+    {
+        type: "bar",
+        data: {
+            labels: jobLabels,
+            datasets: [{
+                label: "Match %",
+                data: jobScores
+            }]
+        }
+    }
+);
+const currentSkills =
+    data.extractedText
+        ? (data.extractedText.match(/Skills:/)
+            ? data.extractedText
+                  .split("Skills:")[1]
+                  .replace("[","")
+                  .replace("]","")
+                  .split(",").length
+            : 0)
+        : 0;
+
+const missingSkills =
+    (data.missingSkills || []).length;
+
+const strength =
+    currentSkills + missingSkills === 0
+        ? 0
+        : Math.round(
+            (currentSkills /
+            (currentSkills + missingSkills))
+            * 100
+        );
+
+new Chart(
+    document.getElementById(
+        "strengthChart"
+    ),
+    {
+        type: "doughnut",
+        data: {
+            labels: [
+                "Strength",
+                "Gap"
+            ],
+            datasets: [{
+                data: [
+                    strength,
+                    100 - strength
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text:
+                        "Resume Strength: "
+                        + strength + "%"
+                }
+            }
+        }
+    }
+);
+const gapSkills = data.missingSkills || [];
+
+new Chart(
+    document.getElementById("skillGapChart"),
+    {
+        type: "bar",
+        data: {
+            labels: gapSkills,
+            datasets: [{
+                label: "Missing Skills",
+                data: gapSkills.map(() => 1)
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    }
+);
 
             if (best) {
                 document.getElementById("bestJob").innerText = best.role;
                 document.getElementById("bestScore").innerText =
                     best.score.toFixed(1) + "% Match";
             }
+            
 
             /* JOB LIST */
             const jobsEl = document.getElementById("jobs");
@@ -157,6 +278,37 @@ window.onload = function () {
 
                 jobsEl.appendChild(li);
             });
+            
+const gapEl =
+    document.getElementById(
+        "missingSkills"
+    );
+    if (gapEl) {
+
+    gapEl.innerHTML = "";
+
+    const missing =
+        data.missingSkills || [];
+
+    if (missing.length === 0) {
+
+        gapEl.innerHTML =
+            "<li>✅ No major skill gaps detected</li>";
+
+    } else {
+
+        missing.forEach(skill => {
+
+            const li =
+                document.createElement("li");
+
+            li.innerHTML =
+                "❌ " + skill;
+
+            gapEl.appendChild(li);
+        });
+    }
+}
 
             /* ROADMAP */
             const roadmapEl = document.getElementById("roadmap");
@@ -183,4 +335,10 @@ window.onload = function () {
 function logout() {
     localStorage.clear();
     window.location.href = "index.html";
+}
+function downloadReport() {
+
+    window.open(
+        `${BASE_URL}/report/4`
+    );
 }

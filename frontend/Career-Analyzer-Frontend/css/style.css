@@ -116,6 +116,21 @@ position: relative;
 /* ===============================
    CARDS
 ================================ */
+.form-control {
+    border-radius: 12px;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 15px rgba(79,70,229,0.25);
+    border-color: #4f46e5;
+}
+
+.card h2,
+.card h3 {
+    margin-bottom: 15px;
+}
 .card {
     border: 1px solid rgba(0,0,0,0.05);
     border-radius: 20px;
@@ -314,6 +329,11 @@ body.dark .stat-card {
     background: linear-gradient(90deg, var(--primary), var(--accent));
     width: 0%;
     transition: width 1s ease-in-out;
+}
+#detectedDomain {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #198754;
 }
 
 /* ===============================
