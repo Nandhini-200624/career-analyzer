@@ -1,63 +1,85 @@
 package com.career.analyzer.entity;
 
-import jakarta.persistence.*;
-import jakarta.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
-
-import java.util.List;
-import java.util.Map;
-
-@Setter
+import jakarta.persistence.*;
 @Entity
 @Table(name = "career_profiles")
 public class CareerProfile {
 
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
     private String education;
 
-    @Getter
     private String currentSkills;
 
-    @Getter
     private String interestedDomain;
 
-    @Getter
     private String experienceLevel;
 
-    @Getter
     private String careerGoal;
+
     @JsonIgnore
-    @OneToOne(mappedBy = "careerProfile",fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "careerProfile", fetch = FetchType.LAZY)
     private User user;
-    // Default Constructor
+
     public CareerProfile() {
     }
 
-    // Parameterized Constructor
-    public CareerProfile(Long id,
-                         String education,
-                         String currentSkills,
-                         String interestedDomain,
-                         String experienceLevel,
-                         String careerGoal) {
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
         this.education = education;
+    }
+
+    public String getCurrentSkills() {
+        return currentSkills;
+    }
+
+    public void setCurrentSkills(String currentSkills) {
         this.currentSkills = currentSkills;
+    }
+
+    public String getInterestedDomain() {
+        return interestedDomain;
+    }
+
+    public void setInterestedDomain(String interestedDomain) {
         this.interestedDomain = interestedDomain;
+    }
+
+    public String getExperienceLevel() {
+        return experienceLevel;
+    }
+
+    public void setExperienceLevel(String experienceLevel) {
         this.experienceLevel = experienceLevel;
+    }
+
+    public String getCareerGoal() {
+        return careerGoal;
+    }
+
+    public void setCareerGoal(String careerGoal) {
         this.careerGoal = careerGoal;
     }
 
-    public List<String> getUser() {
-        return (List<String>) user;
+    public User getUser() {
+        return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
