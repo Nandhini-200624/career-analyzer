@@ -44,7 +44,7 @@ function uploadResume() {
 
     const token = localStorage.getItem("token");
 
-    fetch(`${BASE_URL}/resume/upload/4`, {
+    fetch(`${BASE_URL}/resume/upload/1`, {
         method: "POST",
         headers: {
             "Authorization": "Bearer " + token
@@ -97,7 +97,7 @@ window.onload = function () {
     ========================= */
     if (window.location.pathname.includes("dashboard.html")) {
 
-        fetch(`${BASE_URL}/dashboard/4`)
+        fetch(`${BASE_URL}/dashboard/1`)
             .then(res => res.json())
             .then(data => {
 
@@ -339,6 +339,6 @@ function logout() {
 function downloadReport() {
 
     window.open(
-        `${BASE_URL}/report/4`
+        `${BASE_URL}/report/1`
     );
 }
