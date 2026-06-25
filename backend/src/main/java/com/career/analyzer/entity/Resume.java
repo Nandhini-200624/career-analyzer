@@ -13,8 +13,7 @@ public class Resume {
 
     private String fileType;
 
-    @Lob
-    private byte[] data;
+    
 
     @Lob
     private String extractedText;
@@ -53,13 +52,6 @@ public class Resume {
         this.fileType = fileType;
     }
 
-    public byte[] getData() {
-        return data;
-    }
-
-    public void setData(byte[] data) {
-        this.data = data;
-    }
 
     public String getExtractedText() {
         return extractedText;

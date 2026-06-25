@@ -153,8 +153,7 @@ if(extractedText == null
         resume.setFileType(
                 file.getContentType());
 
-        resume.setData(
-                file.getBytes());
+        //resume.setData(file.getBytes());
                 if(extractedText.length() > 10000){
     extractedText = extractedText.substring(0,10000);
 }
