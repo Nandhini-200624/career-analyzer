@@ -62,10 +62,11 @@ private OcrService ocrService;
 
         // Step 1: Extract text
         // Step 1: Extract text using PDFBox
-
+System.out.println("START EXTRACT");
 String extractedText =
         ResumeTextExtractor.extractText(
                 file.getInputStream());
+                System.out.println("END EXTRACT");
 
 System.out.println(
         "PDF Text Length = "
@@ -162,9 +163,10 @@ if(extractedText == null
                 extractedText);
 
         resume.setUser(user);
-
+System.out.println("START SAVE");
         Resume saved =
                 resumeRepository.save(resume);
+                System.out.println("End SAVE");
 
         // Step 6: Job Recommendations
         List<Map<String, Object>>
