@@ -12,11 +12,7 @@ import com.career.analyzer.util.SkillExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.rendering.PDFRenderer;
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-import java.io.File;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -49,8 +45,6 @@ public class ResumeService {
             skillCategorizationService;
     @Autowired
     private SkillGapService skillGapService;
-    @Autowired
-private OcrService ocrService;
 
     public ResumeResponse uploadResume(
             Long userId,
@@ -61,62 +55,19 @@ private OcrService ocrService;
                         new RuntimeException("User not found"));
 
         // Step 1: Extract text
-        // Step 1: Extract text using PDFBox
-System.out.println("START EXTRACT");
-String extractedText =
-        ResumeTextExtractor.extractText(
-                file.getInputStream());
-                System.out.println("END EXTRACT");
-
-System.out.println(
-        "PDF Text Length = "
-                + extractedText.length());
-
-
-// OCR fallback for image resumes
-
-if(extractedText == null
-        || extractedText.trim().length() < 50){
-
-    System.out.println(
-            "Image Resume Detected -> Running OCR");
-
-    try (PDDocument document =
-         PDDocument.load(
-                 file.getInputStream())) {
-
-    PDFRenderer renderer =
-            new PDFRenderer(document);
-
-    BufferedImage image =
-            renderer.renderImageWithDPI(
-                    0,
-                    72);
-
-    File tempImage =
-            File.createTempFile(
-                    "resume",
-                    ".png");
-
-    ImageIO.write(
-            image,
-            "png",
-            tempImage);
-
-    extractedText =
-            ocrService.extractText(
-                    tempImage);
-
-    System.out.println(
-            "OCR Text Length = "
-                    + extractedText.length());
-}
-        }
-
+        String extractedText = ResumeTextExtractor.extractText(file.getInputStream());
+        if(extractedText == null|| extractedText.trim().length() < 50){
+                throw new RuntimeException("MANUAL_SKILL_ENTRY_REQUIRED");
+                }
         // Step 2: Extract skills
         List<String> skills =
                 skillExtractor.extractSkills(
                         extractedText);
+                        if(skills.isEmpty()){
+
+    throw new RuntimeException(
+            "MANUAL_SKILL_ENTRY_REQUIRED");
+}
         Map<String,List<String>>
                 categorizedSkills =
                 skillCategorizationService
@@ -153,25 +104,26 @@ if(extractedText == null
         resume.setFileType(
                 file.getContentType());
 
-        //resume.setData(file.getBytes());
-                if(extractedText.length() > 10000){
-    extractedText = extractedText.substring(0,10000);
-}
+        resume.setData(null);
 
         resume.setExtractedText(
                 extractedText);
 
         resume.setUser(user);
-System.out.println("START SAVE");
+
         Resume saved =
                 resumeRepository.save(resume);
-                System.out.println("End SAVE");
 
         // Step 6: Job Recommendations
         List<Map<String, Object>>
                 recommendations =
                 weightedSkillService
                         .getTopJobs(skills);
+                        if(recommendations.isEmpty()){
+
+    throw new RuntimeException(
+            "No matching jobs found");
+}
         String bestRole =
                 recommendations.get(0)
                         .get("role")

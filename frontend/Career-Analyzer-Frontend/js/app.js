@@ -45,17 +45,44 @@ function uploadResume() {
     const token = localStorage.getItem("token");
 
     fetch(`${BASE_URL}/api/resume/upload/1`, {
-        method: "POST",
-        headers: {
-            "Authorization": "Bearer " + token
-        },
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        localStorage.setItem("resumeData", JSON.stringify(data));
-        window.location.href = "dashboard.html";
-    })
+    method: "POST",
+    headers: {
+        "Authorization": "Bearer " + token
+    },
+    body: formData
+})
+.then(async response => {
+
+    if(!response.ok){
+
+        const errorText = await response.text();
+
+        if(errorText.includes(
+            "MANUAL_SKILL_ENTRY_REQUIRED")){
+
+            window.location.href =
+                "manual-skills.html";
+
+            return;
+        }
+
+        throw new Error(errorText);
+    }
+
+    return response.json();
+})
+.then(data => {
+
+    if(!data) return;
+
+    localStorage.setItem(
+        "resumeData",
+        JSON.stringify(data)
+    );
+
+    window.location.href =
+        "dashboard.html";
+})
     .catch(err => console.error("Upload Error:", err));
 }
 
@@ -341,4 +368,33 @@ function downloadReport() {
     window.open(
         `${BASE_URL}/api/report/1`
     );
+}
+function submitSkills() {
+
+    const skills =
+        document.getElementById("skills").value;
+
+    fetch(
+        `${BASE_URL}/api/manual/skills/1`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "text/plain"
+            },
+            body: skills
+        }
+    )
+    .then(res => res.json())
+    .then(data => {
+
+        localStorage.setItem(
+            "resumeData",
+            JSON.stringify(data)
+        );
+
+        window.location.href =
+            "dashboard.html";
+    })
+    .catch(err =>
+        console.error(err));
 }

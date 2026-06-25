@@ -13,7 +13,6 @@ public class ResumeTextExtractor {
         PDFTextStripper stripper = new PDFTextStripper();
 
         String text = stripper.getText(document);
-    
         document.close();
 
         return text;
