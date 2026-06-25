@@ -17,23 +17,21 @@ public class OcrService {
 
             Tesseract tesseract = new Tesseract();
 
+            tesseract.setDatapath(
+                "/usr/share/tesseract-ocr/5/tessdata"
+            );
+
             tesseract.setLanguage("eng");
 
-            String text =
-                    tesseract.doOCR(imageFile);
+            String text = tesseract.doOCR(imageFile);
 
-            System.out.println(
-                    "OCR SUCCESS");
+            System.out.println("OCR END");
 
             return text;
 
         } catch (TesseractException e) {
 
-            System.out.println(
-                    "OCR FAILED");
-
             e.printStackTrace();
-
             return "";
         }
     }
