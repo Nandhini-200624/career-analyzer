@@ -5,6 +5,12 @@ const BASE_URL = "https://career-analyzer-5.onrender.com";
 ========================= */
 function login() {
     const username = document.getElementById("username").value;
+    if (!username.trim()) {
+
+    alert("Enter Email");
+
+    return;
+}
 
     localStorage.setItem("username", username);
 
@@ -24,6 +30,7 @@ function login() {
     })
     .catch(error => {
         console.error("Login Error:", error);
+        alert("Login Failed");
     });
 }
 
@@ -43,7 +50,9 @@ function uploadResume() {
     formData.append("file", file);
 
     const token = localStorage.getItem("token");
-
+document.getElementById(
+"loaderOverlay"
+).style.display = "flex";
     fetch(`${BASE_URL}/api/resume/upload/1`, {
     method: "POST",
     headers: {
@@ -59,7 +68,7 @@ function uploadResume() {
 
         if(errorText.includes(
             "MANUAL_SKILL_ENTRY_REQUIRED")){
-
+document.getElementById("loaderOverlay").style.display = "none";
             window.location.href =
                 "manual-skills.html";
 
@@ -83,7 +92,21 @@ function uploadResume() {
     window.location.href =
         "dashboard.html";
 })
-    .catch(err => console.error("Upload Error:", err));
+    .catch(err => {
+
+    document.getElementById(
+        "loaderOverlay"
+    ).style.display = "none";
+
+    console.error(
+        "Upload Error:",
+        err
+    );
+
+    alert(
+        "Resume upload failed"
+    );
+});
 }
 
 
@@ -122,7 +145,8 @@ window.onload = function () {
     /* =========================
        DASHBOARD PAGE LOGIC
     ========================= */
-    if (window.location.pathname.includes("dashboard.html")) {
+    if (
+    window.location.pathname.includes("dashboard.html")) {
 
         fetch(`${BASE_URL}/api/dashboard/1`)
             .then(res => res.json())
@@ -132,11 +156,23 @@ window.onload = function () {
 
                 /* Skills */
                 const skills = data.currentSkills || "";
-                
-                document.getElementById("skills").innerText = skills;
+                const skillsEl =
+    document.getElementById("skills");
 
-                document.getElementById("skillCount").innerText =
-                    skills ? skills.split(",").length : 0;
+if (skillsEl) {
+    skillsEl.innerText = skills;
+}
+
+const skillCountEl =
+    document.getElementById("skillCount");
+
+if (skillCountEl) {
+    skillCountEl.innerText =
+        skills
+            ? skills.split(",").length
+            : 0;
+}
+                
                     const skillDiv =
     document.getElementById("skillCategories");
 
@@ -155,12 +191,21 @@ if(skillDiv){
 }
 
                 /* Domain & Goal */
-                document.getElementById("domain").innerText =
-                    data.interestedDomain || "-";
-                    
+               const domainEl =
+    document.getElementById("domain");
 
-                document.getElementById("goal").innerText =
-                    data.careerGoal || "-";
+if(domainEl){
+    domainEl.innerText =
+        data.interestedDomain || "-";
+}
+
+const goalEl =
+    document.getElementById("goal");
+
+if(goalEl){
+    goalEl.innerText =
+        data.careerGoal || "-";
+}
             })
             .catch(err => console.error("Dashboard Error:", err));
 
@@ -279,6 +324,11 @@ new Chart(
                 document.getElementById("bestJob").innerText = best.role;
                 document.getElementById("bestScore").innerText =
                     best.score.toFixed(1) + "% Match";
+                    document.getElementById("matchBar").style.width =
+best.score + "%";
+
+document.getElementById("matchBar").innerText =
+best.score.toFixed(1) + "%";
             }
             
 
@@ -372,7 +422,18 @@ function downloadReport() {
 function submitSkills() {
 
     const skills =
-        document.getElementById("skills").value;
+        document.getElementById(
+            "manualSkills"
+        ).value.trim();
+
+    if (!skills) {
+
+        alert(
+            "Please enter your skills"
+        );
+
+        return;
+    }
 
     fetch(
         `${BASE_URL}/api/manual/skills/1`,
@@ -395,6 +456,15 @@ function submitSkills() {
         window.location.href =
             "dashboard.html";
     })
-    .catch(err =>
-        console.error(err));
+    .catch(err => {
+
+        console.error(
+            "Manual Skills Error:",
+            err
+        );
+
+        alert(
+            "Unable to analyze skills"
+        );
+    });
 }

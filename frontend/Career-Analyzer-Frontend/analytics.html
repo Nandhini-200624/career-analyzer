@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Analytics Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<!-- Background -->
+<div class="bg-blobs"></div>
+
+<!-- Hero Section -->
+<div class="hero-section">
+
+    <h1>Analytics Dashboard</h1>
+
+    <p>
+        Visual Insights From Your Resume Analysis
+    </p>
+
+</div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href="dashboard.html">
+            Career Analyzer
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarMenu">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse"
+             id="navbarMenu">
+
+            <ul class="navbar-nav me-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="dashboard.html">
+                        Dashboard
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="skills.html">
+                        Skills
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="jobs.html">
+                        Jobs
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="roadmap.html">
+                        Roadmap
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="skill-gap.html">
+                        Skill Gap
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active"
+                       href="analytics.html">
+                        Analytics
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="profile.html">
+                        Profile
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="d-flex gap-2">
+
+                <button class="btn btn-success"
+                        onclick="downloadReport()">
+
+                    Download PDF
+
+                </button>
+
+                <button class="btn btn-outline-light"
+                        onclick="toggleTheme()">
+
+                    🌙 Theme
+
+                </button>
+
+                <button class="btn btn-outline-light"
+                        onclick="logout()">
+
+                    Logout
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- Main Content -->
+<div class="container mt-4">
+
+    <!-- Analytics Summary -->
+    <div class="card shadow p-4 mb-4">
+
+        <h3>
+            <i class="bi bi-graph-up-arrow"></i>
+            Analytics Overview
+        </h3>
+
+        <p class="text-muted mb-0">
+
+            These charts provide insights into your resume strength,
+            missing skills, and career match opportunities.
+
+        </p>
+
+    </div>
+
+    <!-- Top Charts -->
+    <div class="row">
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="card p-4">
+
+                <h5>
+
+                    <i class="bi bi-bar-chart"></i>
+
+                    Skill Gap Analysis
+
+                </h5>
+
+                <canvas id="skillGapChart"></canvas>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="card p-4">
+
+                <h5>
+
+                    <i class="bi bi-briefcase"></i>
+
+                    Career Match Scores
+
+                </h5>
+
+                <canvas id="jobChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Resume Strength -->
+    <div class="card p-4 mb-4">
+
+        <h5>
+
+            <i class="bi bi-award"></i>
+
+            Resume Strength Score
+
+        </h5>
+
+        <canvas id="strengthChart"></canvas>
+
+    </div>
+
+    <!-- Insights -->
+    <div class="row">
+
+        <div class="col-md-4 mb-3">
+
+            <div class="card p-4 text-center">
+
+                <h1>📊</h1>
+
+                <h5>Skill Analysis</h5>
+
+                <p>
+
+                    Understand which skills are present
+                    and which are missing.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 mb-3">
+
+            <div class="card p-4 text-center">
+
+                <h1>🎯</h1>
+
+                <h5>Career Matching</h5>
+
+                <p>
+
+                    Visual comparison of all
+                    recommended job roles.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 mb-3">
+
+            <div class="card p-4 text-center">
+
+                <h1>🚀</h1>
+
+                <h5>Growth Insights</h5>
+
+                <p>
+
+                    Track your readiness level
+                    for industry positions.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+   <div class="row">
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card p-4">
+
+                <h4>
+                    📈 Industry Trends
+                </h4>
+
+                <ul>
+
+                    <li>Artificial Intelligence Engineer</li>
+
+                    <li>Cloud Solutions Architect</li>
+
+                    <li>Data Scientist</li>
+
+                    <li>Cyber Security Analyst</li>
+
+                    <li>Full Stack Developer</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card p-4">
+
+                <h4>
+                    🚀 Emerging Technologies
+                </h4>
+
+                <ul>
+
+                    <li>Generative AI</li>
+
+                    <li>Large Language Models</li>
+
+                    <li>MLOps</li>
+
+                    <li>Cloud Native Development</li>
+
+                    <li>DevOps Automation</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SALARY INSIGHTS -->
+    <div class="card p-4 mb-4">
+
+        <h4>
+            💰 Salary Insights (India)
+        </h4>
+
+        <div class="row">
+
+            <div class="col-md-3 mb-3">
+
+                <div class="card p-3 text-center">
+
+                    <h5>Java Developer</h5>
+
+                    <p>₹6-12 LPA</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3 mb-3">
+
+                <div class="card p-3 text-center">
+
+                    <h5>Full Stack Developer</h5>
+
+                    <p>₹8-18 LPA</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3 mb-3">
+
+                <div class="card p-3 text-center">
+
+                    <h5>Data Scientist</h5>
+
+                    <p>₹10-25 LPA</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3 mb-3">
+
+                <div class="card p-3 text-center">
+
+                    <h5>Cloud Engineer</h5>
+
+                    <p>₹8-20 LPA</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- CAREER DESCRIPTIONS -->
+    <div class="row">
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card p-4">
+
+                <h4>
+                    💼 Software Engineering
+                </h4>
+
+                <p>
+
+                    Build enterprise applications,
+                    APIs, cloud services and scalable
+                    backend systems.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card p-4">
+
+                <h4>
+                    🤖 AI & Data Science
+                </h4>
+
+                <p>
+
+                    Design machine learning models,
+                    predictive systems, recommendation
+                    engines and intelligent solutions.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <div class="card p-4 mb-4">
+
+        <h4>
+            🎓 Recommended Certifications
+        </h4>
+
+        <ul>
+
+            <li>AWS Cloud Practitioner</li>
+
+            <li>Oracle Certified Java Developer</li>
+
+            <li>Microsoft Azure Fundamentals</li>
+
+            <li>Google Data Analytics</li>
+
+            <li>TensorFlow Developer Certificate</li>
+
+        </ul>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center mt-5">
+
+        <h6>Career Analyzer</h6>
+
+        <p>
+            AI-Powered Career Guidance Platform
+        </p>
+
+        <small>
+            © 2026 Career Analyzer | Final Year Project
+        </small>
+
+    </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>

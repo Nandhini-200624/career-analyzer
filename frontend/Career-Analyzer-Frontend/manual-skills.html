@@ -1,29 +1,236 @@
 <!DOCTYPE html>
+
 <html>
 <head>
-    <title>Enter Skills</title>
+    <title>Manual Skill Entry</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
 
-<h2>Manual Skill Entry</h2>
+<div class="bg-blobs"></div>
+
+<!-- HERO -->
+
+<div class="hero-section">
+    <h1>Manual Skill Entry</h1>
+    <p>Resume skills could not be extracted automatically</p>
+</div>
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+
+    <span class="navbar-brand">
+        Career Analyzer
+    </span>
+
+    <div class="ms-auto d-flex gap-2">
+
+        <button class="btn btn-outline-light"
+                onclick="toggleTheme()">
+            🌙 Theme
+        </button>
+
+        <button class="btn btn-outline-light"
+                onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+</div>
+</nav>
+
+<div class="container mt-4">
+
+<!-- INFO CARDS -->
+<div class="row mb-4">
+
+    <div class="col-md-4 mb-3">
+        <div class="card stat-card">
+            <div class="stat-number">1</div>
+            <h5>Enter Skills</h5>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card stat-card">
+            <div class="stat-number">2</div>
+            <h5>AI Analysis</h5>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card stat-card">
+            <div class="stat-number">3</div>
+            <h5>Career Recommendations</h5>
+        </div>
+    </div>
+
+</div>
+
+<!-- MAIN FORM -->
+<div class="row justify-content-center">
+
+    <div class="col-lg-8">
+
+        <div class="card shadow-lg p-5">
+
+            <h3>
+                <i class="bi bi-tools"></i>
+                Enter Your Skills
+            </h3>
+
+            <p class="text-muted">
+                Enter your technical skills separated by commas.
+            </p>
+
+            <div class="alert alert-info">
+
+                <strong>Example:</strong>
+
+                Java, Spring Boot, MySQL, React, Docker, AWS
+
+            </div>
+
+            <textarea
+                id="manualSkills"
+                class="form-control"
+                rows="8"
+                placeholder="Java, Spring Boot, MySQL, React">
+            </textarea>
+
+            <button
+                class="btn btn-primary mt-4 w-100"
+                onclick="submitSkills()">
+
+                Analyze Skills
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- EXAMPLE SKILLS -->
+<div class="row mt-5">
+
+    <div class="col-md-6 mb-3">
+
+        <div class="card p-4">
+
+            <h5>
+                <i class="bi bi-code-slash"></i>
+                Programming Skills
+            </h5>
+
+            <p>
+                Java, Python, C++, JavaScript,
+                TypeScript, PHP
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <div class="card p-4">
+
+            <h5>
+                <i class="bi bi-database"></i>
+                Database Skills
+            </h5>
+
+            <p>
+                MySQL, PostgreSQL,
+                MongoDB, Redis
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- BENEFITS -->
+<div class="row mt-3">
+
+    <div class="col-md-4 mb-3">
+
+        <div class="card p-4 text-center">
+
+            <h1>🎯</h1>
+
+            <h5>Career Matching</h5>
+
+            <p>
+                AI finds jobs that match your skills.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 mb-3">
+
+        <div class="card p-4 text-center">
+
+            <h1>📈</h1>
+
+            <h5>Skill Gap Analysis</h5>
+
+            <p>
+                Discover skills required for top roles.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 mb-3">
+
+        <div class="card p-4 text-center">
+
+            <h1>🛣</h1>
+
+            <h5>Learning Roadmap</h5>
+
+            <p>
+                Personalized roadmap to achieve goals.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<footer class="text-center mt-5 p-4">
+
+<h6>Career Analyzer</h6>
 
 <p>
-We could not extract skills from your resume.
-Please enter your skills manually.
+    AI-Powered Career Guidance Platform
 </p>
 
-<textarea
-id="skills"
-rows="10"
-cols="60"
-placeholder="Java, Spring Boot, MySQL, React">
-</textarea>
+<small>
+    © 2026 Career Analyzer | Final Year Project
+</small>
 
-<br><br>
-
-<button onclick="submitSkills()">
-Analyze Skills
-</button>
+</footer>
 
 <script src="js/app.js"></script>
 

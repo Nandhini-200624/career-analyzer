@@ -32,10 +32,8 @@ public class ManualSkillService {
         List<String> skills =
                 List.of(skillsText.split(","));
 
-        List<Map<String,Object>>
-                recommendations =
-                weightedSkillService
-                        .getTopJobs(skills);
+        List<Map<String,Object>> recommendations =
+                weightedSkillService.getTopJobs(skills);
 
         String bestRole =
                 recommendations.get(0)
@@ -45,17 +43,27 @@ public class ManualSkillService {
         SkillGapResponse gap =
                 skillGapService.analyzeSkills(
                         String.join(",", skills),
-                        bestRole
-                );
+                        bestRole);
 
         CareerRoadmapResponse roadmap =
                 roadmapService.generateRoadmap(
                         bestRole,
-                        gap.getMissingSkills()
-                );
+                        gap.getMissingSkills());
 
         ResumeResponse response =
                 new ResumeResponse();
+
+        // Fake resume information
+        response.setId(0L);
+
+        response.setFileName(
+                "Manual Skill Entry");
+
+        response.setFileType(
+                "Manual");
+
+        response.setExtractedText(
+                "Skills: " + String.join(",", skills));
 
         response.setRecommendations(
                 recommendations);
@@ -73,9 +81,6 @@ public class ManualSkillService {
         response.setCategorizedSkills(
                 skillCategorizationService
                         .categorizeSkills(skills));
-
-        response.setExtractedText(
-                "Skills: " + skills);
 
         return response;
     }
