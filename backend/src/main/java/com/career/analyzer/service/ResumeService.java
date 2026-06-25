@@ -90,7 +90,7 @@ if(extractedText == null
     BufferedImage image =
             renderer.renderImageWithDPI(
                     0,
-                    300);
+                    100);
 
     File tempImage =
             File.createTempFile(
@@ -155,6 +155,9 @@ if(extractedText == null
 
         resume.setData(
                 file.getBytes());
+                if(extractedText.length() > 10000){
+    extractedText = extractedText.substring(0,10000);
+}
 
         resume.setExtractedText(
                 extractedText);
