@@ -13,15 +13,27 @@ public class OcrService {
 
         try {
 
+            System.out.println("OCR START");
+
             Tesseract tesseract = new Tesseract();
 
-            tesseract.setDatapath("C:\\Program Files\\Tesseract-OCR\\tessdata");
+            tesseract.setLanguage("eng");
 
-            return tesseract.doOCR(imageFile);
+            String text =
+                    tesseract.doOCR(imageFile);
+
+            System.out.println(
+                    "OCR SUCCESS");
+
+            return text;
 
         } catch (TesseractException e) {
 
+            System.out.println(
+                    "OCR FAILED");
+
             e.printStackTrace();
+
             return "";
         }
     }

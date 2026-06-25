@@ -81,9 +81,9 @@ if(extractedText == null
     System.out.println(
             "Image Resume Detected -> Running OCR");
 
-    PDDocument document =
-            PDDocument.load(
-                    file.getInputStream());
+    try (PDDocument document =
+         PDDocument.load(
+                 file.getInputStream())) {
 
     PDFRenderer renderer =
             new PDFRenderer(document);
@@ -91,7 +91,7 @@ if(extractedText == null
     BufferedImage image =
             renderer.renderImageWithDPI(
                     0,
-                    100);
+                    72);
 
     File tempImage =
             File.createTempFile(
@@ -110,9 +110,8 @@ if(extractedText == null
     System.out.println(
             "OCR Text Length = "
                     + extractedText.length());
-
-    document.close();
 }
+        }
 
         // Step 2: Extract skills
         List<String> skills =
