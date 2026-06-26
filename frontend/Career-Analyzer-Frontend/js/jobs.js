@@ -59,97 +59,77 @@ function displayStatistics(jobs) {
 
 function displayJobs(jobs) {
 
-    const container =
-        document.getElementById("jobsContainer");
+    const container = document.getElementById("jobsContainer");
 
     container.innerHTML = "";
 
-    if (jobs.length === 0) {
+    if (!jobs || jobs.length === 0) {
 
-        container.innerHTML =
-
-        `
-        <div class="col-12">
-
-            <div class="alert alert-warning text-center">
-
-                No career recommendations available.
-
+        container.innerHTML = `
+            <div class="col-12">
+                <div class="alert alert-warning">
+                    No career recommendations found.
+                </div>
             </div>
-
-        </div>
         `;
 
         return;
-
     }
 
     jobs.forEach((job, index) => {
 
+        const score = Number(job.score) || 0;
+
         let badge = "bg-secondary";
 
-        if (index === 0) {
-
+        if (index === 0)
             badge = "bg-success";
 
-        }
-        else if (index === 1) {
-
+        else if (index === 1)
             badge = "bg-primary";
 
-        }
-        else if (index === 2) {
-
+        else
             badge = "bg-warning text-dark";
 
-        }
+        const card = document.createElement("div");
 
-        container.innerHTML +=
+        card.className = "col-lg-4 col-md-6 mb-4";
 
-        `
-        <div class="col-lg-4 col-md-6 mb-4">
+        card.innerHTML = `
 
             <div class="card shadow h-100">
 
                 <div class="card-body">
 
-                    <h4>
-
-                        ${job.role}
-
-                    </h4>
+                    <h4>${job.role}</h4>
 
                     <span class="badge ${badge}">
-
-                        ${job.score.toFixed(1)}% Match
-
+                        ${score.toFixed(1)}% Match
                     </span>
 
                     <div class="progress mt-3 mb-3">
 
                         <div
                             class="progress-bar bg-success"
-                            role="progressbar"
-                            style="width:${job.score}%">
+                            style="width:${score}%">
 
-                            ${job.score.toFixed(0)}%
+                            ${score.toFixed(1)}%
 
                         </div>
 
                     </div>
 
                     <p>
-
-                        This role matches your current skills and profile.
-
+                        This role matches your current skills.
                     </p>
 
                 </div>
 
             </div>
 
-        </div>
         `;
+
+        container.appendChild(card);
 
     });
 
