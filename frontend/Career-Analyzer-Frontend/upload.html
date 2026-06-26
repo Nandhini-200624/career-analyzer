@@ -9,6 +9,12 @@
 
     <link rel="stylesheet" href="css/style.css">
 
+<link rel="stylesheet" href="css/dashboard.css">
+
+<link rel="stylesheet" href="css/analytics.css">
+
+<link rel="stylesheet" href="css/responsive.css">
+
 </head>
 
 <body>
@@ -124,31 +130,27 @@
                 <input
                     type="file"
                     id="resumeFile"
-                    class="form-control mt-3">
+                    class="form-control mt-3"
+                    accept=".pdf,.doc,.docx">
 
                 <button
-                    class="btn btn-success mt-4 w-100"
-                    onclick="uploadResume()">
 
-                    Analyze Resume
+id="uploadBtn"
 
-                </button>
+class="btn btn-success w-100"
+
+onclick="uploadResume()">
+
+Analyze Resume
+
+</button>
 
             </div>
 
         </div>
 
     </div>
-    <div
-id="loader"
-class="text-center mt-3"
-style="display:none">
-
-<div class="spinner-border"></div>
-
-<p>Analyzing Resume...</p>
-
-</div>
+    
 
     <!-- Process Flow -->
     <div class="row text-center mb-5">
@@ -229,8 +231,10 @@ style="display:none">
     </small>
 
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/config.js"></script>
 
-<script src="js/app.js"></script>
+<script src="js/upload.js"></script>
 
 </body>
 </html>

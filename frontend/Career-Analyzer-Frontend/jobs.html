@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 
-    <title>Career Recommendations</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Career Jobs</title>
+
+    <!-- Bootstrap -->
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet">
 
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- CSS -->
 
     <link rel="stylesheet" href="css/style.css">
 
@@ -18,176 +27,204 @@
 
 <div class="bg-blobs"></div>
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
+
 <div class="hero-section">
+
     <h1>Career Recommendations</h1>
-    <p>AI-generated career matches based on your resume</p>
+
+    <p>
+        Explore the best job roles based on your resume.
+    </p>
+
 </div>
 
-<!-- NAVBAR -->
+<!-- ================= NAVBAR ================= -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <div class="container-fluid">
+<div class="container-fluid">
 
-        <a class="navbar-brand">
-            Career Analyzer
-        </a>
+<a class="navbar-brand"
+   href="dashboard.html">
 
-        <button class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarMenu">
+Career Analyzer
 
-            <span class="navbar-toggler-icon"></span>
+</a>
 
-        </button>
+<button class="navbar-toggler"
+        data-bs-toggle="collapse"
+        data-bs-target="#menu">
 
-        <div class="collapse navbar-collapse"
-             id="navbarMenu">
+<span class="navbar-toggler-icon"></span>
 
-            <ul class="navbar-nav ms-auto">
+</button>
 
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="dashboard.html">
-                        Overview
-                    </a>
-                </li>
+<div class="collapse navbar-collapse"
+     id="menu">
 
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="skills.html">
-                        Skills
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="jobs.html">
-                        Jobs
-                    </a>
-                </li>
+<ul class="navbar-nav ms-auto">
 
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="roadmap.html">
-                        Roadmap
-                    </a>
-                </li>
+<li class="nav-item">
+<a class="nav-link"
+href="dashboard.html">
+Dashboard
+</a>
+</li>
 
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="reports.html">
-                        Reports
-                    </a>
-                </li>
+<li class="nav-item">
+<a class="nav-link"
+href="skills.html">
+Skills
+</a>
+</li>
 
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="profile.html">
-                        Profile
-                    </a>
-                </li>
+<li class="nav-item">
+<a class="nav-link"
+href="skill-gap.html">
+Skill Gap
+</a>
+</li>
 
-            </ul>
+<li class="nav-item">
+<a class="nav-link active"
+href="jobs.html">
+Jobs
+</a>
+</li>
 
-            <div class="d-flex gap-2 ms-3">
+<li class="nav-item">
+<a class="nav-link"
+href="roadmap.html">
+Roadmap
+</a>
+</li>
 
-                <button class="btn btn-outline-light"
-                        onclick="toggleTheme()">
-                    🌙 Theme
-                </button>
+<li class="nav-item">
+<a class="nav-link"
+href="reports.html">
+Report
+</a>
+</li>
 
-                <button class="btn btn-outline-danger"
-                        onclick="logout()">
-                    Logout
-                </button>
+<li class="nav-item">
+<a class="nav-link"
+href="profile.html">
+Profile
+</a>
+</li>
 
-            </div>
+</ul>
 
-        </div>
+<div class="ms-3">
 
-    </div>
+<button class="btn btn-outline-light"
+onclick="toggleTheme()">
+
+🌙 Theme
+
+</button>
+
+</div>
+
+</div>
+
+</div>
 
 </nav>
 
-<div class="container mt-5">
+<!-- ================= MAIN ================= -->
 
-    <!-- BEST MATCH -->
-    <div class="card best-match p-4 mb-4">
+<div class="container mt-4">
 
-        <h4>🎯 Top Career Match</h4>
+<!-- Summary -->
 
-        <h2 id="bestJob">
-            Loading...
-        </h2>
+<div class="card p-4 mb-4">
 
-        <h5 id="bestScore">
-            -
-        </h5>
+<h3>
 
-    </div>
+<i class="bi bi-briefcase-fill"></i>
 
-    <!-- CAREER LIST -->
-    <div class="card p-4 mb-4">
+Recommended Careers
 
-        <h3>
-            <i class="bi bi-briefcase-fill"></i>
-            Recommended Careers
-        </h3>
+</h3>
 
-        <hr>
+<p class="text-muted">
 
-        <ul id="jobs">
+These jobs are recommended based on your resume analysis.
 
-        </ul>
-
-    </div>
-
-    <!-- INSIGHTS -->
-    <div class="row">
-
-        <div class="col-md-6">
-
-            <div class="card p-4">
-
-                <h4>
-                    <i class="bi bi-graph-up"></i>
-                    Career Growth
-                </h4>
-
-                <ul>
-                    <li>High-demand technology roles</li>
-                    <li>Industry-aligned recommendations</li>
-                    <li>Future-proof career paths</li>
-                    <li>Skill-based ranking system</li>
-                </ul>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-6">
-
-            <div class="card p-4">
-
-                <h4>
-                    <i class="bi bi-lightbulb-fill"></i>
-                    AI Insights
-                </h4>
-
-                <ul>
-                    <li>Resume skills compared with industry trends</li>
-                    <li>Matching algorithm evaluates competency fit</li>
-                    <li>Career recommendations continuously optimized</li>
-                    <li>Role suitability measured through skill overlap</li>
-                </ul>
-
-            </div>
-
-        </div>
-
-    </div>
+</p>
 
 </div>
+
+<!-- Statistics -->
+
+<div class="row mb-4">
+
+<div class="col-md-4">
+
+<div class="card stat-card">
+
+<div class="stat-number"
+id="jobCount">
+
+0
+
+</div>
+
+<h5>Jobs Found</h5>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card stat-card">
+
+<div class="stat-number"
+id="highestMatch">
+
+0%
+
+</div>
+
+<h5>Highest Match</h5>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card stat-card">
+
+<div class="stat-number"
+id="averageMatch">
+
+0%
+
+</div>
+
+<h5>Average Match</h5>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Job List -->
+
+<div id="jobsContainer"
+     class="row">
+
+</div>
+
+</div>
+
+<!-- Footer -->
+
 <footer class="text-center mt-5 p-4">
 
     <h6>Career Analyzer</h6>
@@ -201,70 +238,17 @@
     </small>
 
 </footer>
-<script src="js/app.js"></script>
 
-<script>
+<!-- Bootstrap -->
 
-const data =
-    JSON.parse(
-        localStorage.getItem("resumeData")
-    );
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-if(data && data.recommendations){
+<!-- JS -->
 
-    const best =
-        data.recommendations[0];
+<script src="js/config.js"></script>
 
-    if(best){
-
-        document.getElementById(
-            "bestJob"
-        ).innerText =
-            best.role;
-
-        document.getElementById(
-            "bestScore"
-        ).innerText =
-            best.score.toFixed(1)
-            + "% Match";
-    }
-
-    const jobsEl =
-        document.getElementById(
-            "jobs"
-        );
-
-    jobsEl.innerHTML = "";
-
-    data.recommendations.forEach(job => {
-
-        let stars = "⭐⭐⭐⭐⭐";
-
-        if(job.score < 80)
-            stars = "⭐⭐⭐⭐";
-
-        if(job.score < 60)
-            stars = "⭐⭐⭐";
-
-        const li =
-            document.createElement("li");
-
-        li.innerHTML = `
-            <strong>${job.role}</strong>
-            <br>
-            ${stars}
-            <br>
-            Match Score:
-            ${job.score.toFixed(1)}%
-        `;
-
-        jobsEl.appendChild(li);
-
-    });
-
-}
-
-</script>
+<script src="js/jobs.js"></script>
 
 </body>
+
 </html>
