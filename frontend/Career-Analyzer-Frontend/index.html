@@ -2,12 +2,179 @@
 <html>
 <head>
     <title>Career Analyzer Login</title>
-
+ <link rel="icon"
+          type="image/png"
+          href="images/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
-    
+    <style>
+
+body{
+    background:linear-gradient(135deg,#eef5ff,#f8fbff);
+    min-height:100vh;
+}
+
+.hero-section{
+    text-align:center;
+    padding:50px 20px 20px;
+}
+
+.hero-section h1{
+    font-size:52px;
+    font-weight:700;
+    color:#4f46e5;
+}
+
+.hero-section p{
+    font-size:18px;
+    color:#666;
+}
+
+.card{
+    border:none;
+    border-radius:20px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
+
+.shadow-lg{
+    box-shadow:0 15px 40px rgba(0,0,0,.12)!important;
+}
+
+input.form-control{
+    height:52px;
+    border-radius:12px;
+}
+
+.btn-primary{
+    height:50px;
+    border-radius:12px;
+    font-size:18px;
+    font-weight:600;
+    background:#10b547b2;
+    border:none;
+}
+
+.btn-primary:hover{
+    background:#1fd741;
+}
+
+img{
+    border-radius:25px;
+    transition:.4s;
+}
+
+img:hover{
+    transform:scale(1.03);
+}
+
+.col-md-4 .card{
+    height:100%;
+    border-radius:18px;
+    background:rgb(245, 243, 247);
+}
+
+.col-md-4 h4{
+    color:#4f46e5;
+    font-weight:600;
+}
+
+footer{
+    margin-top:80px;
+    background:#111827;
+    color:white;
+}
+
+footer p,
+footer small{
+    color:#d1d5db;
+}
+
+.bg-blobs::before,
+.bg-blobs::after{
+
+    content:"";
+
+    position:fixed;
+
+    border-radius:50%;
+
+    filter:blur(70px);
+
+    opacity:.35;
+
+    z-index:-1;
+
+}
+
+.bg-blobs::before{
+
+    width:320px;
+
+    height:320px;
+
+    background:#7c3aed;
+
+    top:-120px;
+
+    left:-100px;
+
+}
+
+.bg-blobs::after{
+
+    width:350px;
+
+    height:350px;
+
+    background:#3b82f6;
+
+    bottom:-120px;
+
+    right:-120px;
+
+}
+
+
+.login-card{
+
+    background: linear-gradient(
+        135deg,
+        #667eea 0%,
+        #764ba2 100%
+    );
+
+    color: white;
+
+    border-radius: 22px;
+
+    border: none;
+
+    box-shadow:
+        0 18px 40px rgba(102,126,234,.35);
+
+}
+
+.login-card h2,
+.login-card p{
+
+    color: white !important;
+
+}
+
+.login-card input{
+
+    background: rgba(255,255,255,.95);
+
+}
+
+</style>
 </head>
 
 <body>
@@ -17,9 +184,43 @@
 <!-- Hero Section -->
 <div class="hero-section">
     <h1>Career Analyzer</h1>
-    <p>AI-Powered Career Guidance Platform</p>
+    <p><b>AI-Powered Career Guidance Platform</b></p>
 </div>
+<div class="container mb-4">
 
+    <div class="row text-center">
+
+        <div class="col-md-3 col-6 mb-3">
+            <div class="card p-3">
+                <h3>10K+</h3>
+                <small>Resumes</small>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-6 mb-3">
+            <div class="card p-3">
+                <h3>500+</h3>
+                <small>Career Roles</small>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-6 mb-3">
+            <div class="card p-3">
+                <h3>95%</h3>
+                <small>Accuracy</small>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-6 mb-3">
+            <div class="card p-3">
+                <h3>24×7</h3>
+                <small>AI Guidance</small>
+            </div>
+        </div>
+
+    </div>
+
+</div>
 <div class="container mt-5">
 
     <div class="row align-items-center">
@@ -35,10 +236,10 @@
         <!-- Login Card -->
         <div class="col-lg-6">
 
-            <div class="card shadow-lg p-4">
+            <div class="card shadow-lg p-5 login-card">
 
-                <h2 class="text-center mb-3">
-                    Welcome Back
+                <h2 class="text-center mb--2 fw-bold">
+                    Welcome Back 👋
                 </h2>
 
                 <p class="text-center text-muted">
@@ -49,10 +250,11 @@
                     type="email"
                     id="username"
                     class="form-control mb-3"
-                    placeholder="Enter Email">
+                    placeholder="Enter Email"
+                    autocomplete="off">
 
                 <button
-                    class="btn btn-primary w-100"
+                    class="btn btn-primary w-100 mt-2"
                     onclick="login()">
                     Login
                 </button>
@@ -69,21 +271,22 @@
         <div class="col-md-4 mb-3">
             <div class="card p-3 text-center">
                 <h4>🎯 Career Matching</h4>
-                <p>Find jobs aligned with your skills.</p>
+                <p><b>Find jobs aligned with your skills.</b></p>
             </div>
         </div>
 
         <div class="col-md-4 mb-3">
             <div class="card p-3 text-center">
                 <h4>📄 Resume Analysis</h4>
-                <p>AI extracts skills and interests.</p>
+                <p><b>AI extracts skills and interests.</b></p>
             </div>
         </div>
 
         <div class="col-md-4 mb-3">
             <div class="card p-3 text-center">
-                <h4>🛣 Learning Roadmap</h4>
-                <p>Get a personalized growth plan.</p>
+             <h4>🛣 Learning Roadmap</h4>
+                <p><b>Get a personalized growth plan.</b></p>
+                
             </div>
         </div>
 

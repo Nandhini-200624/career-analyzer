@@ -3,17 +3,260 @@
 <head>
 
     <title>Upload Resume</title>
-
+<link rel="icon"
+          type="image/png"
+          href="images/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
+<style>
 
-<link rel="stylesheet" href="css/dashboard.css">
+/* Upload Card */
+.card.shadow-lg{
 
-<link rel="stylesheet" href="css/analytics.css">
+    background: linear-gradient(135deg,#ffffff,#f5f8ff);
 
-<link rel="stylesheet" href="css/responsive.css">
+    border:none;
+
+    border-radius:25px;
+
+    box-shadow:0 15px 40px rgba(79,70,229,.15)!important;
+
+    transition:.35s;
+
+}
+
+.card.shadow-lg:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 25px 55px rgba(79,70,229,.22)!important;
+
+}
+
+/* Statistics Cards */
+
+.row .card{
+
+    border:none;
+
+    border-radius:20px;
+
+    transition:.3s;
+
+    background:#fff;
+
+}
+
+.row .card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 30px rgba(0,0,0,.12);
+
+}
+
+.row .card h2{
+
+    color:#4f46e5;
+
+    font-weight:700;
+
+}
+
+/* Upload Button */
+
+#uploadBtn{
+
+    margin-top:25px;
+
+    padding:14px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    border-radius:12px;
+
+    background:linear-gradient(135deg,#4f46e5,#2563eb);
+
+    border:none;
+
+    transition:.3s;
+
+}
+
+#uploadBtn:hover{
+
+    transform:scale(1.02);
+
+    box-shadow:0 10px 25px rgba(79,70,229,.35);
+
+}
+
+/* File Input */
+
+#resumeFile{
+
+    padding:12px;
+
+    border-radius:12px;
+
+    border:2px dashed #4f46e5;
+
+    background:#f8f9ff;
+
+    cursor:pointer;
+
+}
+
+#resumeFile:hover{
+
+    background:#eef2ff;
+
+}
+
+/* AI Image */
+
+img.img-fluid{
+
+    border-radius:25px!important;
+
+    transition:.4s;
+
+}
+
+img.img-fluid:hover{
+
+    transform:scale(1.03);
+
+}
+
+/* Process Icons */
+
+.row .card h1{
+
+    font-size:55px;
+
+    margin-bottom:15px;
+
+}
+
+/* Testimonials */
+
+.row .card h5{
+
+    color:#f59e0b;
+
+}
+
+/* Loader */
+
+.loader-box{
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.18);
+
+}
+
+.loader-box::after{
+
+    content:"";
+
+    display:block;
+
+    width:45px;
+
+    height:45px;
+
+    margin:20px auto 0;
+
+    border:5px solid #dbeafe;
+
+    border-top:5px solid #4f46e5;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* Footer */
+
+footer{
+
+    background:linear-gradient(135deg,#111827,#1f2937);
+
+    color:white;
+
+    border-radius:25px 25px 0 0;
+
+}
+
+footer p,
+footer small{
+
+    color:#d1d5db;
+
+}
+
+/* Navbar */
+
+.navbar{
+
+    box-shadow:0 5px 20px rgba(0,0,0,.12);
+
+}
+
+/* Hero */
+
+.hero-section{
+
+    padding:70px 20px;
+
+}
+
+.hero-section h1{
+
+    font-size:3rem;
+
+    font-weight:700;
+
+}
+
+.hero-section p{
+
+    font-size:1.2rem;
+
+    opacity:.95;
+
+}
+
+</style>
 
 </head>
 
