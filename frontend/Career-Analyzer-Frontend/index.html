@@ -173,13 +173,81 @@ footer small{
     background: rgba(255,255,255,.95);
 
 }
+#loaderOverlay{
+
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,.92);
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:99999;
+
+    backdrop-filter:blur(6px);
+
+}
+
+.loader-box{
+
+    background:white;
+    padding:40px 60px;
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+
+    animation:popup .35s ease;
+
+}
+
+.loader-box h3{
+
+    margin-top:15px;
+    color:#2563eb;
+    font-weight:700;
+
+}
+
+.loader-box p{
+
+    color:#666;
+
+}
+
+@keyframes popup{
+
+from{
+
+transform:scale(.8);
+opacity:0;
+
+}
+
+to{
+
+transform:scale(1);
+opacity:1;
+
+}
+
+}
+
 
 </style>
 </head>
 
 <body>
+<div class="bg-blobs">
+    <span class="blob-green"></span>
+</div>
 
-<div class="bg-blobs"></div>
 
 <!-- Hero Section -->
 <div class="hero-section">
@@ -291,6 +359,26 @@ footer small{
         </div>
 
     </div>
+</div>
+<!-- Login Loader -->
+
+<div id="loaderOverlay" style="display:none;">
+
+    <div class="loader-box">
+
+        <div class="spinner-border text-primary mb-3"
+             role="status"
+             style="width:70px;height:70px;">
+
+            <span class="visually-hidden">Loading...</span>
+
+        </div>
+
+        <h3>Logging In...</h3>
+
+        <p>Please wait while we verify your account.</p>
+
+    </div>
 
 </div>
 
@@ -310,10 +398,6 @@ footer small{
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/config.js"></script>
 <script src="js/login.js"></script>
-
-
-
-
 
 </body>
 </html>

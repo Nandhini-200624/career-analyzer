@@ -223,7 +223,9 @@ min-height:180px;
 
 <body>
 
-<div class="bg-blobs"></div>
+<div class="bg-blobs">
+     <span class="blob-green"></span>
+</div>
 
 <!-- Hero -->
 
@@ -239,7 +241,29 @@ Please enter them manually.
 </p>
 </b>
 </div>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
 
+        <span class="navbar-brand">
+            Career Analyzer
+        </span>
+
+        <div class="ms-auto d-flex gap-2">
+
+            <button class="btn btn-outline-light"
+                    onclick="toggleTheme()">
+                🌙 Theme
+            </button>
+
+            <button class="btn btn-outline-light"
+                    onclick="logout()">
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+</nav>
 <div class="container mt-5">
 
 <div class="row align-items-center">

@@ -10,7 +10,7 @@ function login() {
         return;
 
     }
-
+  document.getElementById("loaderOverlay").style.display = "flex";
     localStorage.setItem("username", username);
 
     fetch(`${CONFIG.BASE_URL}/api/auth/login`, {
@@ -42,6 +42,7 @@ function login() {
     .catch(err => {
 
         console.error(err);
+        document.getElementById("loaderOverlay").style.display = "none";
 
         alert("Login Failed");
 

@@ -156,60 +156,52 @@ p{
 ==============================*/
 
 .bg-blobs{
-
     position:fixed;
-
     inset:0;
-
     overflow:hidden;
-
+    pointer-events:none;
     z-index:-1;
-
 }
-
 
 .bg-blobs::before,
-
 .bg-blobs::after{
-
     content:"";
-
     position:absolute;
-
-    width:500px;
-
-    height:500px;
-
     border-radius:50%;
-
     filter:blur(90px);
-
-    opacity:.25;
-
-    animation:floatBlob 14s infinite alternate;
-
+    opacity:.45;
+    animation:floatBlob 18s ease-in-out infinite alternate;
 }
 
-
+/* Top Left Blue */
 .bg-blobs::before{
-
+    width:420px;
+    height:420px;
     background:#60a5fa;
-
     top:-120px;
-
     left:-120px;
-
 }
 
-
+/* Bottom Right Purple */
 .bg-blobs::after{
-
-    background:#38bdf8;
-
-    bottom:-150px;
-
+    width:380px;
+    height:380px;
+    background:#a855f7;
+    bottom:-120px;
     right:-120px;
-
+    animation-duration:22s;
+}
+.blob-green{
+    position:absolute;
+    width:340px;
+    height:340px;
+    border-radius:50%;
+    background:#34d399;
+    filter:blur(85px);
+    opacity:.35;
+    left:40%;
+    bottom:-100px;
+    animation:floatGreen 20s ease-in-out infinite alternate;
 }
 
 
@@ -220,31 +212,26 @@ p{
 @keyframes floatBlob{
 
     from{
-
-        transform:
-
-        translateY(0)
-
-        translateX(0)
-
-        scale(1);
-
+        transform:translate(0,0) scale(1);
     }
 
     to{
-
-        transform:
-
-        translateY(80px)
-
-        translateX(60px)
-
-        scale(1.25);
-
+        transform:translate(50px,40px) scale(1.15);
     }
 
 }
 
+@keyframes floatGreen{
+
+    from{
+        transform:translate(0,0);
+    }
+
+    to{
+        transform:translate(-60px,-50px);
+    }
+
+}
 
 /*==============================
     HERO SECTION

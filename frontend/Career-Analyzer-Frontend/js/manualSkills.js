@@ -104,3 +104,17 @@ function clearSkills() {
         .value = "";
 
 }
+function logout() {
+
+    localStorage.clear();
+
+    window.location.href =
+        "index.html";
+
+}
+
+function toggleTheme() {
+
+    document.body.classList.toggle("dark-mode");
+
+}
