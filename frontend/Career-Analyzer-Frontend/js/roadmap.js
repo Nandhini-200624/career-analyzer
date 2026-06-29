@@ -93,11 +93,7 @@ function displayRoadmap(roadmap) {
 
 }
 
-function toggleTheme() {
 
-    document.body.classList.toggle("dark-mode");
-
-}
 function logout() {
 
     localStorage.clear();
@@ -108,3 +104,8 @@ function logout() {
 }
 
 
+function toggleTheme() {
+
+    document.body.classList.toggle("dark-mode");
+
+}
