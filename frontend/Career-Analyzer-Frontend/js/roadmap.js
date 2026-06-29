@@ -98,3 +98,13 @@ function toggleTheme() {
     document.body.classList.toggle("dark-mode");
 
 }
+function logout() {
+
+    localStorage.clear();
+
+    window.location.href =
+        "index.html";
+
+}
+
+

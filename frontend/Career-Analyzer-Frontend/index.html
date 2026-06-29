@@ -10,85 +10,97 @@
 
     <link rel="stylesheet" href="css/style.css">
     <style>
+a{
 
-body{
-    background:linear-gradient(135deg,#eef5ff,#f8fbff);
-    min-height:100vh;
-}
+    position:relative;
 
-.hero-section{
-    text-align:center;
-    padding:50px 20px 20px;
-}
+    text-decoration:none !important;
 
-.hero-section h1{
-    font-size:52px;
-    font-weight:700;
-    color:#4f46e5;
-}
-
-.hero-section p{
-    font-size:18px;
-    color:#666;
-}
-
-.card{
-    border:none;
-    border-radius:20px;
     transition:.3s;
+
 }
 
-.card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 15px 35px rgba(0,0,0,.12);
+/* Animated Underline */
+
+a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-3px;
+
+    width:0%;
+
+    height:2px;
+
+    background:#4f46e5;
+
+    transition:width .3s ease;
+
 }
 
-.shadow-lg{
-    box-shadow:0 15px 40px rgba(0,0,0,.12)!important;
+a:hover::after{
+
+    width:100%;
+
 }
 
-input.form-control{
-    height:52px;
-    border-radius:12px;
-}
+/* Navbar Links */
 
-.btn-primary{
-    height:50px;
-    border-radius:12px;
-    font-size:18px;
+.nav-link{
+
     font-weight:600;
-    background:#10b547b2;
-    border:none;
+
 }
 
-.btn-primary:hover{
-    background:#1fd741;
+.nav-link:hover{
+
+    color:#60a5fa !important;
+
 }
 
-img{
-    border-radius:25px;
-    transition:.4s;
+.nav-link.active::after{
+
+    width:100%;
+
 }
 
-img:hover{
-    transform:scale(1.03);
+/* Dashboard Quick Access Links */
+
+.text-decoration-none{
+
+    display:block;
+
 }
 
-.col-md-4 .card{
-    height:100%;
-    border-radius:18px;
-    background:rgb(245, 243, 247);
+.text-decoration-none:hover{
+
+    color:inherit;
+
 }
 
-.col-md-4 h4{
-    color:#4f46e5;
-    font-weight:600;
+/* Brand Link */
+
+.navbar-brand{
+
+    font-weight:700;
+
 }
 
+.navbar-brand::after{
+
+    background:#ffffff;
+
+}
+
+/* Footer Links (if added later) */
 footer{
     margin-top:80px;
     background:#111827;
-    color:white;
+    color:rgb(255, 255, 255);
 }
 
 footer p,
@@ -96,48 +108,270 @@ footer small{
     color:#d1d5db;
 }
 
-.bg-blobs::before,
-.bg-blobs::after{
+.card{
+
+    border:none;
+
+    border-radius:22px;
+
+    background:linear-gradient(145deg,#ffffff,#f8fbff);
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.08),
+    0 2px 6px rgba(0,0,0,.04);
+
+    transition:all .35s ease;
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+/* Top Gradient Line */
+
+.card::before{
 
     content:"";
 
-    position:fixed;
+    position:absolute;
 
-    border-radius:50%;
+    left:0;
 
-    filter:blur(70px);
+    top:0;
 
-    opacity:.35;
+    width:100%;
 
-    z-index:-1;
+    height:5px;
 
-}
-
-.bg-blobs::before{
-
-    width:320px;
-
-    height:320px;
-
-    background:#7c3aed;
-
-    top:-120px;
-
-    left:-100px;
+    background:linear-gradient(
+    90deg,
+    #4f46e5,
+    #06b6d4,
+    #10b981
+    );
 
 }
 
-.bg-blobs::after{
+/* Hover Effect */
 
-    width:350px;
+.card:hover{
 
-    height:350px;
+    transform:translateY(-8px);
 
-    background:#3b82f6;
+    box-shadow:
+    0 20px 35px rgba(79,70,229,.18),
+    0 10px 15px rgba(0,0,0,.08);
 
-    bottom:-120px;
+}
 
-    right:-120px;
+/* Card Titles */
+
+.card h2{
+
+    font-weight:700;
+
+    color:#4f46e5;
+
+}
+
+.card h3{
+
+    font-weight:700;
+
+    color:#4f46e5;
+
+}
+
+.card h4{
+
+    font-weight:700;
+
+    color:#4f46e5;
+
+}
+
+.card h5{
+
+    font-weight:600;
+
+    color:#1f2937;
+
+}
+
+.card h6{
+
+    font-weight:600;
+
+    color:#374151;
+
+}
+
+/* Paragraph */
+
+.card p{
+
+    color:#6b7280;
+
+    line-height:1.7;
+
+}
+
+/* Icons */
+
+.card i{
+
+    color:#4f46e5;
+
+    transition:.3s;
+
+}
+
+.card:hover i{
+
+    transform:scale(1.2);
+
+}
+
+/* ===========================
+   STATISTICS CARDS
+=========================== */
+
+.stat-card{
+
+    background:linear-gradient(
+    135deg,
+    #eef4ff,
+    #ffffff
+    );
+
+    text-align:center;
+
+    padding:20px;
+
+}
+
+.stat-number{
+
+    font-size:42px;
+
+    font-weight:800;
+
+    color:#4f46e5;
+
+}
+
+/* ===========================
+   BEST MATCH CARD
+=========================== */
+
+.best-match{
+
+    background:linear-gradient(
+    135deg,
+    #4f46e5,
+    #7c3aed
+    );
+
+    color:white;
+
+}
+
+.best-match h2,
+.best-match h4,
+.best-match h5{
+
+    color:white;
+
+}
+
+.best-match .progress{
+
+    height:24px;
+
+    border-radius:50px;
+
+}
+
+/* ===========================
+   QUICK ACCESS CARDS
+=========================== */
+
+.text-decoration-none .card{
+
+    cursor:pointer;
+
+    min-height:180px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.text-decoration-none .card h2{
+
+    font-size:45px;
+
+    transition:.3s;
+
+}
+
+.text-decoration-none:hover .card{
+
+    background:linear-gradient(
+    145deg,
+    #eef7ff,
+    #ffffff
+    );
+
+}
+
+.text-decoration-none:hover h2{
+
+    transform:scale(1.2) rotate(6deg);
+
+}
+
+/* ===========================
+   PROFILE SUMMARY CARDS
+=========================== */
+
+.card .bi{
+
+    margin-right:8px;
+
+}
+
+/* ===========================
+   CANVAS CARD
+=========================== */
+
+canvas{
+
+    margin-top:15px;
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:768px){
+
+.card{
+
+margin-bottom:20px;
+
+}
+
+.stat-number{
+
+font-size:32px;
+
+}
 
 }
 
@@ -289,6 +523,25 @@ opacity:1;
     </div>
 
 </div>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+
+        <span class="navbar-brand">
+            Career Analyzer
+        </span>
+
+        <div class="ms-auto d-flex gap-2">
+
+            <button class="btn btn-outline-light"
+                    onclick="toggleTheme()">
+                🌙 Theme
+            </button>
+
+
+        </div>
+
+    </div>
+</nav>
 <div class="container mt-5">
 
     <div class="row align-items-center">

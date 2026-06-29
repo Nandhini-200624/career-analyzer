@@ -173,3 +173,11 @@ function toggleTheme() {
         document.body.classList.add("dark-mode");
     }
 })();
+function logout() {
+
+    localStorage.clear();
+
+    window.location.href =
+        "index.html";
+
+}
